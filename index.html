@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Project Weather</title>
+	<link rel="icon" type="image/png" href="favi.ico">
+	<meta charset="UTF-8">
+  	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Exo+2:700|Roboto|Roboto+Mono|Source+Code+Pro" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="script.js">	</script>
+</head>
+<body>
+	<section class="body1">	
+	 <header>
+      <span>Global Weather Forecast</span>
+     </header>
+		<div class="search">
+			<div class="input-group mb-3">
+  				<input type="text" id="myInput" class="form-control" placeholder="Search by Country, Province or City. " style="padding: 1.487rem 0.75rem;" aria-label=" City name" aria-describedby="basic-addon2" onkeydown = "if (event.keyCode == 13)
+				  document.getElementById('search-btn').click()">
+  				<div class="input-group-append">
+    			<button id="search-btn" class="btn btn-outline-secondary " onclick="getWeather()" type="button">
+    				<i class="fab fa-searchengin fa-2x"></i>
+    			</button>
+				</div>
+			</div>
+		</div>
+		<div class="weather-info">
+			<h2 class="city-name"> </h2>
+			<h3 class="temp"><span></span>°</h3>
+			<p id="icon"></p>
+			<p class=" description"> </p>
+			<div class="switch-btn">
+				<span>°C</span>
+				<label class="switch">
+				  <input id="abc" type="checkbox" onclick="toggle()">
+				  <span class="slider round"></span>
+				</label>
+				<span>°F</span>				
+			</div>
+			<p class="temp-range"><span class="min"></span> ° /  <span class="max"></span>° </p>
+		</div>
+		<div class="image-copyright">Images by <a href="https://andrewsalfinger.tumblr.com/" target="_blank"><b>Andrew Salfinger</b></a></div>			
+		<div class="site-copyright">Copyright &copy; 2020 | <a href="https://www.instagram.com/mrhassan_saif/"><b>M. Hassan Bin Saif</b></a></div>
+	</section>
+</body>
+</html>
