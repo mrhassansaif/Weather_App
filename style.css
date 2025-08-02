@@ -1,155 +1,195 @@
+@import url('https://fonts.googleapis.com/css?family=Exo+2:700|Roboto');
 
-body, html {
-  height: 100%;
-  width: 100%;
-  color: white;	
-  font-family: 'Roboto', sans-serif;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-header{
-    padding: 50px 0;
-    /*color: grey;
-    background-color: #eaeaea;*/
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    flex-wrap: wrap !important;
-    align-content: flex-start;
-    font-family: 'Roboto', sans-serif;
-    width: 100%;
-    font-size: 7vw;
-  }
-.body2{
+/* 2) Let the page scroll normally if content overflows */
+html, body {
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+}
+
+/* 1) Prevent your main <section> from scrolling internally */
+.body1 {
+  position: relative;
   height: 100vh;
   width: 100%;
-  background-color: #00000073;
-  overflow-y: scroll;
-
+  background: url('Day.png') center/cover no-repeat;
+  overflow: hidden;
+  transition: background 2s ease;
 }
-.input-group{
-	margin: 1em auto;
-	max-width: 500px;
+.body1::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
 }
 
-/* The switch - the box around the slider */
+header {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 0;
+  font-family: 'Exo 2', sans-serif;
+  font-size: clamp(2rem, 7vw, 4rem);
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+.search {
+  position: relative;
+  z-index: 1;
+}
+
+.input-group {
+  max-width: 650px;   /* your wider width */
+  margin: 1.5rem auto;
+}
+
+.input-group .form-control {
+  border: none;
+  border-radius: 2rem 0 0 2rem;
+  padding: 1rem 1.5rem;
+}
+.input-group-append .btn {
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 0 2rem 2rem 0;
+  transition: background 0.3s;
+}
+.input-group-append .btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+.form-control:focus,
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+/* 3) Make your weather-card fluid in height (no clipped band) */
+.weather-card {
+  position: relative;
+  z-index: 1;
+  max-width: 650px;   /* match your new width */
+  width: 90%;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  animation: fadeIn 0.6s ease-out both;
+  max-height: none;
+  overflow: visible;
+}
+
+.city-name {
+  font-family: 'Exo 2', sans-serif;
+  font-size: clamp(1.5rem, 6vw, 3rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.temp {
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  margin: 0;
+  animation: pulse 2s infinite ease-in-out alternate;
+}
+
+.description {
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  text-transform: capitalize;
+}
+
+.switch-btn {
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.temp-range {
+  font-size: clamp(0.8rem, 2vw, 1.2rem);
+}
+
+/* toggle switch */
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 50px;
+  height: 26px;
 }
-
-/* Hide default HTML checkbox */
-.switch input {display:none;}
-
-/* The slider */
+.switch input {
+  display: none;
+}
 .slider {
   position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.image-copyright {
-  position: absolute;
-  bottom: 23px;
-  left: 10px;
-  font-size: 10px;
-}
-
-.site-copyright  {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  font-size: 10px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
   border-radius: 34px;
+  transition: 0.4s;
 }
-
-.slider.round:before {
+.slider::before {
+  content: '';
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 2px;
+  bottom: 2px;
+  background: #fff;
   border-radius: 50%;
+  transition: 0.4s;
+}
+input:checked + .slider {
+  background-color: #2196f3;
+}
+input:checked + .slider::before {
+  transform: translateX(24px);
 }
 
-.body1{
-    text-align: center;
-    background-image: url(Day.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    transition: 2s;
-    height: 100vh;
-    width: 100%;
-    overflow-y: scroll;
+/* animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-.temp{
-	font-size: 7vw;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.description{
-	font-size: 4vw;
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
 }
-.switch-btn{
-	font-size: 4vw;
-}
-.city-name{
-	letter-spacing: 4px;
-	text-transform: uppercase;
-}
-#icon{
-	font-size: 2vw;
-  margin-top: 0px;
-}
-.weather-info{
-	display: none;
-}
-.bg-img{
-  
-  height: 100px;
-  width: 100px;
-}
-/*.row div{
-  border: 1px solid black;
-}*/
 
-.col-sm{
-  min-width: 250px;
-  /*max-width: 250px;*/
-  border: 1px solid black;
+/* 4) Pin your credits to the viewport so they never scroll away */
+.image-copyright,
+.site-copyright {
+  position: fixed;
+  left: 1rem;
+  font-size: 0.7rem;
 }
-.temp-range{
-  font-size: 2vw;
+.image-copyright {
+  bottom: 2.5rem;
+}
+.site-copyright {
+  bottom: 1rem;
 }
